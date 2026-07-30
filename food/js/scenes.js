@@ -136,47 +136,24 @@
     if (step >= 1 && s.eid2025Ratio) g.append("text").attr("x", W / 2).attr("y", M.t - 2).attr("text-anchor", "middle").attr("fill", T.orange).attr("font-weight", 800).attr("font-size", 16).text("عيد 2025: " + Math.round(s.eid2025Ratio) + " لكل 100");
   }
 
-  // scene 6: SVG grid ≥600px; HTML stacked cards <600px
+  // scene 6: item-first price-tag cards (one card per item, only observed prices — no empty cells).
+  // Rendered as HTML for all widths; the SVG stays hidden. The 30.6 average line anchors above.
+  const ITEM_LABEL = { "وجبة برغر": "وجبة اقتصادية", "شاي كرك": "كرك", "عصير برتقال": "عصير" };
   function scene6(svg, data, step, reduced) {
-    const s = data.scene6, node = svg.node();
-    const cards = document.getElementById("grid6");
-    if (isNarrow() && cards) {
-      if (node) node.style.display = "none"; cards.hidden = false;
-      cards.innerHTML = scene6cards(s);
-      return;
-    }
-    if (cards) cards.hidden = true;
-    if (node) node.style.display = "";
-    const W = viewport(svg), g = frame(svg);
-    const items = s.items, chains = s.grid;
-    const labelW = 74, gx0 = M.l, gy = M.t + 44;
-    const gridRight = W - M.r - labelW, cw = (gridRight - gx0) / items.length;
-    const rh = (H - M.b - 24 - gy) / chains.length, colX = (i) => gridRight - (i + 0.5) * cw;
-    items.forEach((it, i) => g.append("text").attr("x", colX(i)).attr("y", gy - 9).attr("text-anchor", "middle").attr("fill", T.grey).attr("font-size", 13).text(it));
-    g.append("text").attr("x", W - M.r).attr("y", M.t + 6).attr("text-anchor", "end").attr("fill", T.orange).attr("font-weight", 700).attr("font-size", FS.small).text("متوسط العملية ≈ " + s.avgBill + " ريالًا");
-    chains.forEach((ch, r) => {
-      const cy = gy + r * rh;
-      g.append("text").attr("x", W - M.r).attr("y", cy + rh / 2 + 4).attr("text-anchor", "end").attr("fill", T.ink).attr("font-size", FS.small).attr("font-weight", 700).text(ch.chain + (ch.deliveryOnly ? " ⚡" : ""));
-      items.forEach((it, i) => {
-        const val = ch.items[it], est = ch.city !== "الرياض" && val != null;
-        g.append("rect").attr("x", colX(i) - cw / 2 + 2).attr("y", cy + 2).attr("width", cw - 4).attr("height", rh - 4).attr("rx", 5)
-          .attr("fill", val == null ? "#faf7ff" : "#fff").attr("stroke", est ? "#d9c7f0" : "#e6dff2").attr("stroke-dasharray", est ? "3 2" : null);
-        g.append("text").attr("x", colX(i)).attr("y", cy + rh / 2 + 5).attr("text-anchor", "middle").attr("fill", val == null ? "#c9b8e6" : C.purple).attr("font-size", FS.small).attr("font-weight", val == null ? 400 : 700).text(val == null ? "·" : val);
-      });
-    });
-    g.append("text").attr("x", gx0).attr("y", M.t + 6).attr("text-anchor", "start").attr("fill", T.grey).attr("font-size", 11).text("⚡ توصيل فقط · الخط المتقطّع = مقدَّرة");
-    g.append("text").attr("x", W / 2).attr("y", H - 6).attr("text-anchor", "middle").attr("fill", "#9a8fb5").attr("font-size", 12).text("لا سعر مقهى على الويب المفتوح: " + s.appOnly.join(" · "));
+    const node = svg.node(), cards = document.getElementById("grid6");
+    if (node) node.style.display = "none";
+    if (cards) { cards.hidden = false; cards.innerHTML = scene6cards(data.scene6); }
   }
   function scene6cards(s) {
-    const rows = s.grid.map((ch) => {
-      const cells = s.items.filter((it) => ch.items[it] != null).map((it) => {
-        const est = ch.city !== "الرياض";
-        return `<span class="gc-item"><span class="gc-name">${it}</span><span class="gc-price${est ? " est" : ""}">${ch.items[it]}${est ? " *" : ""}</span></span>`;
-      }).join("");
-      return `<div class="gc-card"><div class="gc-chain">${ch.chain}${ch.deliveryOnly ? ' <span class="gc-tag">توصيل</span>' : ""}</div><div class="gc-cells">${cells || '<span class="gc-none">لا أصناف منشورة</span>'}</div></div>`;
+    const cardsHtml = s.items.map((it) => {
+      const tags = s.grid.filter((ch) => ch.items[it] != null).map((ch) =>
+        `<span class="ic-tag"><span class="ic-price">${ch.items[it]}<i>ريال</i></span><span class="ic-chain">${ch.chain}</span></span>`
+      ).join("");
+      return `<div class="ic"><div class="ic-name">${ITEM_LABEL[it] || it}</div><div class="ic-tags">${tags}</div></div>`;
     }).join("");
-    return `<div class="gc-head">متوسط العملية ≈ ${s.avgBill} ريالًا · <span class="est">* مقدَّرة</span></div>${rows}
-      <div class="gc-foot">لا سعر مقهى على الويب المفتوح: ${s.appOnly.join(" · ")}</div>`;
+    return `<div class="ic-anchor">متوسط العملية ≈ ${s.avgBill} ريالًا</div>
+      <div class="ic-grid">${cardsHtml}</div>
+      <div class="ic-foot">سلاسل أخرى كبرى تنشر أسعارها داخل تطبيقاتها فقط</div>`;
   }
 
   function scene7(svg, data, step, reduced) {
