@@ -1,4 +1,4 @@
-/* Big-Piece-001 — orchestration. Loads data.json, injects scene-7 honesty cards after the
+/* Big-Piece-001 · orchestration. Loads data.json, injects scene-7 honesty cards after the
    closing, drives each scene's step via IntersectionObserver, and runs a scroll-progress bar.
    Reduced-motion → static final states. */
 (function () {
@@ -29,9 +29,9 @@
     const wrap = document.getElementById("scene7steps");
     data.scene7.cards.forEach((c, i) => {
       const step = document.createElement("div");
-      step.className = "step"; step.dataset.scene = "7"; step.dataset.step = String(i + 1);
+      step.className = "step"; step.dataset.scene = "7"; step.dataset.step = String(i + 2);
       step.innerHTML = `<div class="honesty"><h3>${c.title}</h3><p>${c.body}</p></div>`;
-      wrap.appendChild(step);   // AFTER the closing (step 0)
+      wrap.appendChild(step);   // AFTER the closing (step 0) + summary (step 1)
     });
   }
 

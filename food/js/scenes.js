@@ -1,4 +1,4 @@
-/* Big-Piece-001 — D3 scene renderers. SCENES[n](svg, data, step, reduced) fully redraws that
+/* Big-Piece-001 · D3 scene renderers. SCENES[n](svg, data, step, reduced) fully redraws that
    scene for `step`. RESPONSIVE viewBox: each render measures the SVG's rendered pixel width and
    sets the viewBox to match (1:1 scale), so SVG text renders at its exact px size (≥12px effective
    on phones). Time axes run RIGHT→LEFT (earliest right, latest LEFT). Numbers come only from data.
@@ -83,7 +83,7 @@
     const x = xTime(W, [2016, 2023]), y = yLin([0, 110]);
     yAxis(g, W, y, [0, 50, 100]); xTicks(g, x, [2016, 2019, 2022]);
     g.append("line").attr("x1", M.l).attr("x2", W - M.r).attr("y1", y(100)).attr("y2", y(100)).attr("stroke", C.orange).attr("stroke-width", 1.5).attr("stroke-dasharray", "4 4");
-    g.append("text").attr("x", M.l).attr("y", y(100) - 8).attr("fill", T.orange).attr("font-size", FS.small).text("خط التعادل (100)");
+    g.append("text").attr("x", M.l).attr("y", y(100) - 8).attr("fill", T.orange).attr("font-size", FS.small).text("خط التساوي مع البقالة (100)");
     const upto = step === 0 ? 2016 : step === 1 ? 2022 : 2023;
     const pts = s.annual.filter((d) => d.year <= upto);
     g.append("path").datum(pts).attr("fill", C.purple).attr("opacity", 0.12).attr("d", d3.area().x((d) => x(d.year)).y0(y(0)).y1((d) => y(d.ratio)));
@@ -92,7 +92,7 @@
     g.append("circle").attr("cx", x(cur.year)).attr("cy", y(cur.ratio)).attr("r", 4.5).attr("fill", C.purple);
     g.append("text").attr("x", W / 2).attr("y", M.t + 42).attr("text-anchor", "middle").attr("fill", C.purple).attr("font-size", FS.big).attr("font-weight", 800).text(step >= 2 ? cur.ratio : Math.round(cur.ratio));
     g.append("text").attr("x", W / 2).attr("y", M.t + 64).attr("text-anchor", "middle").attr("fill", T.grey).attr("font-size", FS.small).text("ريال مطاعم لكل 100 ريال بقالة (" + cur.year + ")");
-    if (step >= 2) g.append("text").attr("x", W / 2).attr("y", M.t + 86).attr("text-anchor", "middle").attr("fill", T.orange).attr("font-size", FS.small).attr("font-weight", 700).text("توقّف دون التعادل");
+    if (step >= 2) g.append("text").attr("x", W / 2).attr("y", M.t + 86).attr("text-anchor", "middle").attr("fill", T.orange).attr("font-size", FS.small).attr("font-weight", 700).text("توقّف دون التساوي");
   }
 
   function scene4(svg, data, step, reduced) {
@@ -119,7 +119,7 @@
     const y = yLin([0, 150]);
     yAxis(g, W, y, [0, 50, 100, 150]);
     g.append("line").attr("x1", M.l).attr("x2", W - M.r).attr("y1", y(100)).attr("y2", y(100)).attr("stroke", C.orange).attr("stroke-width", 1.5).attr("stroke-dasharray", "4 4");
-    g.append("text").attr("x", W - M.r).attr("y", y(100) - 7).attr("text-anchor", "end").attr("fill", T.orange).attr("font-size", 12).text("تعادل");
+    g.append("text").attr("x", W - M.r).attr("y", y(100) - 7).attr("text-anchor", "end").attr("fill", T.orange).attr("font-size", 12).text("تساوٍ (100)");
     const gw = (W - M.l - M.r) / years.length, bw = Math.min(12, (gw - 8) / roles.length);
     years.forEach((yr, gi) => {
       const gx = (W - M.r) - (gi + 1) * gw + 4;
@@ -153,7 +153,7 @@
     const gridRight = W - M.r - labelW, cw = (gridRight - gx0) / items.length;
     const rh = (H - M.b - 24 - gy) / chains.length, colX = (i) => gridRight - (i + 0.5) * cw;
     items.forEach((it, i) => g.append("text").attr("x", colX(i)).attr("y", gy - 9).attr("text-anchor", "middle").attr("fill", T.grey).attr("font-size", 13).text(it));
-    g.append("text").attr("x", W - M.r).attr("y", M.t + 6).attr("text-anchor", "end").attr("fill", T.orange).attr("font-weight", 700).attr("font-size", FS.small).text("الفاتورة المتوسطة ≈ " + s.avgBill + " ريالًا");
+    g.append("text").attr("x", W - M.r).attr("y", M.t + 6).attr("text-anchor", "end").attr("fill", T.orange).attr("font-weight", 700).attr("font-size", FS.small).text("متوسط العملية ≈ " + s.avgBill + " ريالًا");
     chains.forEach((ch, r) => {
       const cy = gy + r * rh;
       g.append("text").attr("x", W - M.r).attr("y", cy + rh / 2 + 4).attr("text-anchor", "end").attr("fill", T.ink).attr("font-size", FS.small).attr("font-weight", 700).text(ch.chain + (ch.deliveryOnly ? " ⚡" : ""));
@@ -175,7 +175,7 @@
       }).join("");
       return `<div class="gc-card"><div class="gc-chain">${ch.chain}${ch.deliveryOnly ? ' <span class="gc-tag">توصيل</span>' : ""}</div><div class="gc-cells">${cells || '<span class="gc-none">لا أصناف منشورة</span>'}</div></div>`;
     }).join("");
-    return `<div class="gc-head">الفاتورة المتوسطة ≈ ${s.avgBill} ريالًا · <span class="est">* مقدَّرة</span></div>${rows}
+    return `<div class="gc-head">متوسط العملية ≈ ${s.avgBill} ريالًا · <span class="est">* مقدَّرة</span></div>${rows}
       <div class="gc-foot">لا سعر مقهى على الويب المفتوح: ${s.appOnly.join(" · ")}</div>`;
   }
 

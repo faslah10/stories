@@ -1,4 +1,4 @@
-/* Big-Piece-001 — scrollytelling. Mobile-first, RTL, house colors + contrast text. */
+/* Big-Piece-001 · scrollytelling. Mobile-first, RTL, house colors + contrast text. */
 :root {
   --purple: #5E35B1;   /* fills */
   --orange: #E58606;
@@ -95,7 +95,16 @@ a { color: var(--purple); }
 .honesty h3 { color: var(--purple); font-size: 1.05rem; margin-bottom: .2em; }
 .honesty p { margin: 0; font-size: .98rem; color: var(--ink); }
 
-/* scene 6 — HTML stacked cards (<600px) */
+/* scene 7: takeaway summary card (sits between the closing line and the honesty cards) */
+.summary-card { max-width: 42ch; margin-inline: auto; color: #fff; border-radius: 16px;
+  padding: 1.2rem 1.3rem; box-shadow: 0 12px 34px rgba(50,20,110,.22);
+  background: radial-gradient(120% 130% at 100% 0%, #6a3fc0 0%, var(--purple) 58%, #3d1f7a 100%); }
+.summary-card h3 { color: #ffd9a8; font-size: 1.12rem; margin-bottom: .6em; }
+.summary-list { margin: 0; padding-inline-start: 1.4em; display: flex; flex-direction: column; gap: .55em; }
+.summary-list li { font-size: 1rem; line-height: 1.65; }
+.summary-list li::marker { color: var(--orange); font-weight: 800; }
+
+/* scene 6 · HTML stacked cards (<600px) */
 .grid-cards { width: min(94vw, 460px); max-height: 66vh; overflow-y: auto; }
 .grid-cards .gc-head { font-size: .95rem; font-weight: 700; color: var(--t-orange); text-align: center; margin-bottom: .7rem; }
 .grid-cards .gc-head .est { color: var(--t-grey); font-weight: 600; }
@@ -110,7 +119,7 @@ a { color: var(--purple); }
 .gc-none { color: #9a8fb5; font-size: .9rem; }
 .grid-cards .gc-foot { font-size: .82rem; color: #9a8fb5; text-align: center; margin-top: .6rem; }
 
-/* subscribe CTAs — tap targets ≥44px */
+/* subscribe CTAs · tap targets ≥44px */
 .subscribe { text-align: center; padding: 12vh 6vw; color: #fff;
   background: radial-gradient(120% 100% at 50% 0%, #6a3fc0 0%, var(--purple) 55%, #3d1f7a 100%); }
 .subscribe h2 { font-size: clamp(1.5rem, 7vw, 2.4rem); margin-bottom: .2em; }
