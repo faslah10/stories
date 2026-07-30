@@ -45,6 +45,22 @@
     document.querySelectorAll(".step").forEach((el) => io.observe(el));
   }
 
+  // re-render every drawn scene at its current step on resize/rotate: the responsive viewBox
+  // is measured at render time, and scene 6 swaps SVG↔HTML cards at the 600px breakpoint.
+  function onResize(data) {
+    let t = null;
+    window.addEventListener("resize", () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        Object.keys(active).forEach((scene) => {
+          const step = active[scene];
+          const fn = window.SCENES[scene];
+          if (fn) fn(svg(scene), data, step, REDUCED);   // force redraw (bypass render() guard)
+        });
+      }, 160);
+    });
+  }
+
   function progressBar() {
     const bar = document.getElementById("progress");
     if (!bar) return;
@@ -65,6 +81,7 @@
       injectScene7Cards(data);
       for (let n = 1; n <= 7; n++) render(n, REDUCED ? 99 : 0, data);
       progressBar();
+      onResize(data);
       if (!REDUCED) setupObserver(data);
     })
     .catch((err) => {

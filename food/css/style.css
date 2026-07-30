@@ -95,6 +95,21 @@ a { color: var(--purple); }
 .honesty h3 { color: var(--purple); font-size: 1.05rem; margin-bottom: .2em; }
 .honesty p { margin: 0; font-size: .98rem; color: var(--ink); }
 
+/* scene 6 — HTML stacked cards (<600px) */
+.grid-cards { width: min(94vw, 460px); max-height: 66vh; overflow-y: auto; }
+.grid-cards .gc-head { font-size: .95rem; font-weight: 700; color: var(--t-orange); text-align: center; margin-bottom: .7rem; }
+.grid-cards .gc-head .est { color: var(--t-grey); font-weight: 600; }
+.gc-card { background: #fff; border: 1px solid #e6dff2; border-radius: 12px; padding: .7rem .85rem; margin-bottom: .55rem; box-shadow: 0 4px 16px rgba(50,20,110,.06); }
+.gc-chain { font-weight: 800; color: var(--ink); font-size: 1rem; margin-bottom: .35rem; }
+.gc-tag { font-size: .72rem; font-weight: 700; color: #fff; background: var(--orange); border-radius: 999px; padding: .05em .55em; margin-inline-start: .3em; vertical-align: middle; }
+.gc-cells { display: flex; flex-wrap: wrap; gap: .4rem; }
+.gc-item { display: inline-flex; align-items: baseline; gap: .3em; background: #f1eafb; border-radius: 8px; padding: .28em .6em; font-size: .92rem; }
+.gc-item .gc-name { color: var(--t-grey); }
+.gc-item .gc-price { color: var(--purple); font-weight: 800; }
+.gc-item .gc-price.est { color: #8a6fc0; }
+.gc-none { color: #9a8fb5; font-size: .9rem; }
+.grid-cards .gc-foot { font-size: .82rem; color: #9a8fb5; text-align: center; margin-top: .6rem; }
+
 /* subscribe CTAs — tap targets ≥44px */
 .subscribe { text-align: center; padding: 12vh 6vw; color: #fff;
   background: radial-gradient(120% 100% at 50% 0%, #6a3fc0 0%, var(--purple) 55%, #3d1f7a 100%); }
