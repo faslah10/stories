@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "من 120 إلى 29 ريالًا: ماذا انكمش فعلًا: الوجبة أم النقود الورقية؟",
+    "title": "من 120 إلى 31 ريالًا: ماذا انكمش فعلًا: الوجبة أم النقود الورقية؟",
     "brand": "فاصلة عشرية · @faslah_10",
     "colors": {
       "restaurants": "#5E35B1",
@@ -177,6 +177,9 @@
     "valueEndBillionSar": 89.4,
     "valueMult": 9.4,
     "countMult": 32.0,
+    "countStartMillion": 79.3,
+    "countEndMillion": 2559.8,
+    "countEndBillion": 2.56,
     "source": "البنك المركزي السعودي (SAMA) · نقاط البيع"
   },
   "scene3": {
@@ -1428,6 +1431,39 @@
       "eid_week"
     ],
     "parity": 100,
+    "peakRoleByYear": {
+      "2021": {
+        "role": "eid_week",
+        "ratio": 103.5
+      },
+      "2022": {
+        "role": "late_ramadan",
+        "ratio": 135.9
+      },
+      "2023": {
+        "role": "eid_week",
+        "ratio": 107.2
+      },
+      "2024": {
+        "role": "late_ramadan",
+        "ratio": 125.9
+      },
+      "2025": {
+        "role": "eid_week",
+        "ratio": 136.0
+      }
+    },
+    "eidPeakYears": [
+      2021,
+      2023,
+      2025
+    ],
+    "latePeakYears": [
+      2022,
+      2024
+    ],
+    "seriesMaxRatio": 136.0,
+    "seriesMaxYear": 2025,
     "eid2025Ratio": 136.0,
     "source": "البنك المركزي السعودي (SAMA) · نقاط البيع"
   },
@@ -1512,9 +1548,9 @@
       }
     ],
     "appOnly": [
-      "البيك",
       "بارنز",
-      "كودو"
+      "كودو",
+      "البيك"
     ],
     "coffeeDuo": {
       "latte": {
