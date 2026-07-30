@@ -136,7 +136,7 @@
     if (step >= 1 && s.eid2025Ratio) g.append("text").attr("x", W / 2).attr("y", M.t - 2).attr("text-anchor", "middle").attr("fill", T.orange).attr("font-weight", 800).attr("font-size", 16).text("عيد 2025: " + Math.round(s.eid2025Ratio) + " لكل 100");
   }
 
-  // scene 6: item-first price-tag cards (one card per item, only observed prices — no empty cells).
+  // scene 6: item-first price-tag cards (one card per item, only observed prices · no empty cells).
   // Rendered as HTML for all widths; the SVG stays hidden. The 30.6 average line anchors above.
   const ITEM_LABEL = { "وجبة برغر": "وجبة اقتصادية", "شاي كرك": "كرك", "عصير برتقال": "عصير" };
   function scene6(svg, data, step, reduced) {
