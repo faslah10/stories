@@ -67,8 +67,8 @@
     const bar = (cx, mult, show, color, tcolor, title, sub) => {
       const h = show ? (H - M.b) - y(mult) : 0;
       g.append("rect").attr("x", cx - bw / 2).attr("y", (H - M.b) - h).attr("width", bw).attr("height", h).attr("rx", 8).attr("fill", color);
-      if (show) g.append("text").attr("x", cx).attr("y", (H - M.b) - h - 12).attr("text-anchor", "middle").attr("fill", tcolor).attr("font-weight", 800).attr("font-size", 28).text("×" + mult);
-      g.append("text").attr("x", cx).attr("y", H - M.b + 22).attr("text-anchor", "middle").attr("fill", T.grey).attr("font-size", FS.small + 1).text(title);
+      if (show) g.append("text").attr("x", cx).attr("y", (H - M.b) - h + 30).attr("text-anchor", "middle").attr("fill", "#fff").attr("font-weight", 800).attr("font-size", 28).text("×" + mult);
+      g.append("text").attr("x", cx).attr("y", H - M.b + 22).attr("text-anchor", "middle").attr("fill", tcolor).attr("font-weight", 700).attr("font-size", FS.small + 1).text(title);
       if (sub && show) g.append("text").attr("x", cx).attr("y", H - M.b + 40).attr("text-anchor", "middle").attr("fill", T.grey).attr("font-size", FS.small).text(sub);
     };
     g.append("line").attr("x1", M.l).attr("x2", W - M.r).attr("y1", H - M.b).attr("y2", H - M.b).attr("stroke", "#d9d2e6");
@@ -83,7 +83,6 @@
     const x = xTime(W, [2016, 2023]), y = yLin([0, 110]);
     yAxis(g, W, y, [0, 50, 100]); xTicks(g, x, [2016, 2019, 2022]);
     g.append("line").attr("x1", M.l).attr("x2", W - M.r).attr("y1", y(100)).attr("y2", y(100)).attr("stroke", C.orange).attr("stroke-width", 1.5).attr("stroke-dasharray", "4 4");
-    g.append("text").attr("x", M.l).attr("y", y(100) - 8).attr("fill", T.orange).attr("font-size", FS.small).text("خط التساوي مع البقالة (100)");
     const upto = step === 0 ? 2016 : step === 1 ? 2022 : 2023;
     const pts = s.annual.filter((d) => d.year <= upto);
     g.append("path").datum(pts).attr("fill", C.purple).attr("opacity", 0.12).attr("d", d3.area().x((d) => x(d.year)).y0(y(0)).y1((d) => y(d.ratio)));
@@ -105,8 +104,6 @@
     g.append("path").datum(pts).attr("fill", C.orange).attr("opacity", 0.14).attr("d", d3.area().x((d) => x(d.t)).y0((d) => y(d.food)).y1((d) => y(d.rest)));
     g.append("path").datum(pts).attr("fill", "none").attr("stroke", C.grey).attr("stroke-width", 2.5).attr("d", d3.line().x((d) => x(d.t)).y((d) => y(d.food)));
     g.append("path").datum(pts).attr("fill", "none").attr("stroke", C.purple).attr("stroke-width", 3).attr("d", d3.line().x((d) => x(d.t)).y((d) => y(d.rest)));
-    g.append("text").attr("x", x(2013)).attr("y", y(s.cpi[0].food) - 10).attr("text-anchor", "middle").attr("fill", T.grey).attr("font-size", FS.small).text("أغذية البيت");
-    g.append("text").attr("x", x(2013)).attr("y", y(s.cpi[0].rest) + 18).attr("text-anchor", "middle").attr("fill", C.purple).attr("font-size", FS.small).text("المطاعم");
     if (step >= 1) g.append("text").attr("x", x(2020)).attr("y", M.t).attr("text-anchor", "middle").attr("fill", C.purple).attr("font-size", FS.small).attr("font-weight", 700).text("المطاعم +" + s.growthRestSince2013 + "% · البيت +" + s.growthFoodSince2013 + "%");
     if (step >= 2) { const ct = parseT(s.crossover); g.append("circle").attr("cx", x(ct)).attr("cy", y(100)).attr("r", 5.5).attr("fill", C.orange); g.append("text").attr("x", x(ct)).attr("y", y(100) + 24).attr("text-anchor", "middle").attr("fill", T.orange).attr("font-size", FS.small).attr("font-weight", 700).text("أول عبور 2018"); }
     if (step >= 3) { const e = s.cpi[s.cpi.length - 1]; g.append("text").attr("x", x(2026.5) + 2).attr("y", y(e.rest)).attr("text-anchor", "start").attr("fill", C.purple).attr("font-size", FS.small).text(e.rest); }
@@ -118,8 +115,8 @@
     const roles = s.roleOrder, years = Array.from(new Set(s.weeks.map((w) => w.year))).sort();
     const y = yLin([0, 150]);
     yAxis(g, W, y, [0, 50, 100, 150]);
-    g.append("line").attr("x1", M.l).attr("x2", W - M.r).attr("y1", y(100)).attr("y2", y(100)).attr("stroke", C.orange).attr("stroke-width", 1.5).attr("stroke-dasharray", "4 4");
-    g.append("text").attr("x", W - M.r).attr("y", y(100) - 7).attr("text-anchor", "end").attr("fill", T.orange).attr("font-size", 12).text("تساوٍ (100)");
+    g.append("line").attr("x1", M.l).attr("x2", W - M.r).attr("y1", y(100)).attr("y2", y(100)).attr("stroke", "#9a8fb5").attr("stroke-width", 1.5).attr("stroke-dasharray", "4 4");
+    g.append("text").attr("x", W - M.r).attr("y", y(100) - 7).attr("text-anchor", "start").attr("fill", "#8578a0").attr("font-size", 12).text("خط التساوي (100)");
     const gw = (W - M.l - M.r) / years.length, bw = Math.min(12, (gw - 8) / roles.length);
     years.forEach((yr, gi) => {
       const gx = (W - M.r) - (gi + 1) * gw + 4;
@@ -145,15 +142,16 @@
     if (cards) { cards.hidden = false; cards.innerHTML = scene6cards(data.scene6); }
   }
   function scene6cards(s) {
+    const chains = s.grid.filter((ch) => !ch.excludedFromRender);   // pickup-priced only (drops delivery-priced)
     const cardsHtml = s.items.map((it) => {
-      const tags = s.grid.filter((ch) => ch.items[it] != null).map((ch) =>
+      const tags = chains.filter((ch) => ch.items[it] != null).map((ch) =>
         `<span class="ic-tag"><span class="ic-price">${ch.items[it]}<i>ريال</i></span><span class="ic-chain">${ch.chain}</span></span>`
       ).join("");
+      if (!tags) return "";   // no pickup price for this item → no card (no empty cells)
       return `<div class="ic"><div class="ic-name">${ITEM_LABEL[it] || it}</div><div class="ic-tags">${tags}</div></div>`;
     }).join("");
     return `<div class="ic-anchor">متوسط العملية ≈ ${s.avgBill} ريالًا</div>
-      <div class="ic-grid">${cardsHtml}</div>
-      <div class="ic-foot">سلاسل أخرى كبرى تنشر أسعارها داخل تطبيقاتها فقط</div>`;
+      <div class="ic-grid">${cardsHtml}</div>`;
   }
 
   function scene7(svg, data, step, reduced) {

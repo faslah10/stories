@@ -55,6 +55,12 @@ a { color: var(--purple); }
 @keyframes sk { to { background-position: -200% 0 } }
 .scene-kicker { font-size: .8rem; font-weight: 800; color: var(--orange); letter-spacing: .02em; margin-bottom: .2em; text-align: center; }
 .scene-title { font-size: .98rem; color: var(--t-grey); font-weight: 700; margin-bottom: .5em; text-align: center; max-width: 40ch; }
+/* chart color legend (HTML, below the title · always in flow, never clipped by the sticky graphic) */
+.chart-legend { display: flex; flex-wrap: wrap; gap: .3rem .9rem; justify-content: center; align-items: center;
+  margin: 0 0 .5em; font-size: .82rem; font-weight: 600; color: var(--t-grey); max-width: 42ch; }
+.chart-legend span { display: inline-flex; align-items: center; gap: .4em; white-space: nowrap; }
+.chart-legend i { width: 17px; height: 11px; border-radius: 3px; display: inline-block; flex: none; }
+.chart-legend i.dash { height: 0; background: none; border-radius: 0; border-top: 3px dashed currentColor; }
 .steps { position: relative; margin-top: -100vh; z-index: 2; }
 .step { min-height: 100vh; display: flex; align-items: center; padding: 3vh 5vw; }
 .step .card {

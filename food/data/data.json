@@ -1485,6 +1485,7 @@
         "chain": "شاورمر",
         "city": "الوطني",
         "deliveryOnly": false,
+        "excludedFromRender": null,
         "items": {
           "شاورما": 7.0,
           "وجبة برغر": null,
@@ -1498,6 +1499,7 @@
         "chain": "هرفي",
         "city": "الوطني",
         "deliveryOnly": false,
+        "excludedFromRender": null,
         "items": {
           "شاورما": null,
           "وجبة برغر": 15.0,
@@ -1511,6 +1513,7 @@
         "chain": "ماكدونالدز",
         "city": "الرياض",
         "deliveryOnly": true,
+        "excludedFromRender": "delivery-priced",
         "items": {
           "شاورما": null,
           "وجبة برغر": 27.0,
@@ -1524,6 +1527,7 @@
         "chain": "دانكن",
         "city": "الوطني",
         "deliveryOnly": false,
+        "excludedFromRender": null,
         "items": {
           "شاورما": null,
           "وجبة برغر": null,
@@ -1537,6 +1541,7 @@
         "chain": "كيان",
         "city": "الوطني",
         "deliveryOnly": false,
+        "excludedFromRender": null,
         "items": {
           "شاورما": null,
           "وجبة برغر": null,
@@ -1548,9 +1553,9 @@
       }
     ],
     "appOnly": [
-      "بارنز",
       "كودو",
-      "البيك"
+      "البيك",
+      "بارنز"
     ],
     "coffeeDuo": {
       "latte": {
@@ -1601,10 +1606,6 @@
       {
         "title": "بداية جائحية",
         "body": "السلسلة الأسبوعية تبدأ في قاع 2020، فتجنّبنا بناء أي مقارنة من تلك النقطة."
-      },
-      {
-        "title": "العيّنة لقطة لا سلسلة",
-        "body": "أسعار العيّنة لقطة يومين محددين، لا سلسلة زمنية."
       }
     ],
     "source": "البنك المركزي السعودي (SAMA) · نقاط البيع · الهيئة العامة للإحصاء · تقديرات السكان 2024"
