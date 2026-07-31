@@ -97,16 +97,21 @@
   function scene4(svg, data, step, reduced) {
     const s = data.scene4; if (reduced) step = 4;
     const W = viewport(svg), g = frame(svg);
-    const x = xTime(W, [2013, 2026.6]), y = yLin([65, 112]);
-    yAxis(g, W, y, [70, 80, 90, 100, 110]); xTicks(g, x, [2013, 2016, 2019, 2022, 2026]);
+    const x = xTime(W, [2013, 2026.6]), y = yLin([95, 150]);
+    yAxis(g, W, y, [100, 120, 140]); xTicks(g, x, [2013, 2016, 2019, 2022, 2026]);
+    // common base line: both series start at 100 in 2013 (rebased); their spread IS the growth differential
+    g.append("line").attr("x1", M.l).attr("x2", W - M.r).attr("y1", y(100)).attr("y2", y(100)).attr("stroke", "#c9bfe0").attr("stroke-width", 1).attr("stroke-dasharray", "2 3");
+    g.append("text").attr("x", M.l).attr("y", y(100) - 6).attr("text-anchor", "start").attr("fill", "#8578a0").attr("font-size", 12).text("2013 = 100");
     const maxT = step === 0 ? 2014 : 2026.5;
     const pts = s.cpi.map((d) => ({ t: parseT(d.month), food: d.food, rest: d.rest })).filter((d) => d.t <= maxT);
     g.append("path").datum(pts).attr("fill", C.orange).attr("opacity", 0.14).attr("d", d3.area().x((d) => x(d.t)).y0((d) => y(d.food)).y1((d) => y(d.rest)));
     g.append("path").datum(pts).attr("fill", "none").attr("stroke", C.grey).attr("stroke-width", 2.5).attr("d", d3.line().x((d) => x(d.t)).y((d) => y(d.food)));
     g.append("path").datum(pts).attr("fill", "none").attr("stroke", C.purple).attr("stroke-width", 3).attr("d", d3.line().x((d) => x(d.t)).y((d) => y(d.rest)));
-    if (step >= 1) g.append("text").attr("x", x(2020)).attr("y", M.t).attr("text-anchor", "middle").attr("fill", C.purple).attr("font-size", FS.small).attr("font-weight", 700).text("المطاعم +" + s.growthRestSince2013 + "% · البيت +" + s.growthFoodSince2013 + "%");
-    if (step >= 2) { const ct = parseT(s.crossover); g.append("circle").attr("cx", x(ct)).attr("cy", y(100)).attr("r", 5.5).attr("fill", C.orange); g.append("text").attr("x", x(ct)).attr("y", y(100) + 24).attr("text-anchor", "middle").attr("fill", T.orange).attr("font-size", FS.small).attr("font-weight", 700).text("أول عبور " + String(s.crossover).slice(0, 4)); }
-    if (step >= 3) { const e = s.cpi[s.cpi.length - 1]; g.append("text").attr("x", x(2026.5) + 2).attr("y", y(e.rest)).attr("text-anchor", "start").attr("fill", C.purple).attr("font-size", FS.small).text(e.rest); }
+    if (step >= 1) g.append("text").attr("x", W / 2).attr("y", M.t).attr("text-anchor", "middle").attr("fill", C.purple).attr("font-size", FS.small).attr("font-weight", 700).text("المطاعم +" + s.growthRestSince2013 + "% · البيت +" + s.growthFoodSince2013 + "%");
+    if (step >= 3) {
+      g.append("text").attr("x", x(2026.5) + 2).attr("y", y(s.restEnd2013base) + 2).attr("text-anchor", "start").attr("fill", C.purple).attr("font-weight", 800).attr("font-size", FS.small).text(Math.round(s.restEnd2013base));
+      g.append("text").attr("x", x(2026.5) + 2).attr("y", y(s.foodEnd2013base) + 12).attr("text-anchor", "start").attr("fill", T.grey).attr("font-size", FS.small).text(Math.round(s.foodEnd2013base));
+    }
   }
 
   function scene5(svg, data, step, reduced) {
