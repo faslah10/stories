@@ -61,6 +61,8 @@ a { color: var(--purple); }
 .chart-legend span { display: inline-flex; align-items: center; gap: .4em; white-space: nowrap; }
 .chart-legend i { width: 17px; height: 11px; border-radius: 3px; display: inline-block; flex: none; }
 .chart-legend i.dash { height: 0; background: none; border-radius: 0; border-top: 3px dashed currentColor; }
+/* small chart caption/footnote (e.g. unit note), under the chart near the source line · out of the prose */
+.chart-note { text-align: center; color: var(--t-grey); font-size: .74rem; opacity: .85; margin: .3rem auto 0; max-width: 40ch; }
 .steps { position: relative; margin-top: -100vh; z-index: 2; }
 .step { min-height: 100vh; display: flex; align-items: center; padding: 3vh 5vw; }
 .step .card {
