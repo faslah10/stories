@@ -105,7 +105,7 @@
     g.append("path").datum(pts).attr("fill", "none").attr("stroke", C.grey).attr("stroke-width", 2.5).attr("d", d3.line().x((d) => x(d.t)).y((d) => y(d.food)));
     g.append("path").datum(pts).attr("fill", "none").attr("stroke", C.purple).attr("stroke-width", 3).attr("d", d3.line().x((d) => x(d.t)).y((d) => y(d.rest)));
     if (step >= 1) g.append("text").attr("x", x(2020)).attr("y", M.t).attr("text-anchor", "middle").attr("fill", C.purple).attr("font-size", FS.small).attr("font-weight", 700).text("المطاعم +" + s.growthRestSince2013 + "% · البيت +" + s.growthFoodSince2013 + "%");
-    if (step >= 2) { const ct = parseT(s.crossover); g.append("circle").attr("cx", x(ct)).attr("cy", y(100)).attr("r", 5.5).attr("fill", C.orange); g.append("text").attr("x", x(ct)).attr("y", y(100) + 24).attr("text-anchor", "middle").attr("fill", T.orange).attr("font-size", FS.small).attr("font-weight", 700).text("أول عبور 2018"); }
+    if (step >= 2) { const ct = parseT(s.crossover); g.append("circle").attr("cx", x(ct)).attr("cy", y(100)).attr("r", 5.5).attr("fill", C.orange); g.append("text").attr("x", x(ct)).attr("y", y(100) + 24).attr("text-anchor", "middle").attr("fill", T.orange).attr("font-size", FS.small).attr("font-weight", 700).text("أول عبور " + String(s.crossover).slice(0, 4)); }
     if (step >= 3) { const e = s.cpi[s.cpi.length - 1]; g.append("text").attr("x", x(2026.5) + 2).attr("y", y(e.rest)).attr("text-anchor", "start").attr("fill", C.purple).attr("font-size", FS.small).text(e.rest); }
   }
 
@@ -133,8 +133,9 @@
     if (step >= 1 && s.eid2025Ratio) g.append("text").attr("x", W / 2).attr("y", M.t - 2).attr("text-anchor", "middle").attr("fill", T.orange).attr("font-weight", 800).attr("font-size", 16).text("عيد 2025: " + Math.round(s.eid2025Ratio) + " لكل 100");
   }
 
-  // scene 6: item-first price-tag cards (one card per item, only observed prices · no empty cells).
-  // Rendered as HTML for all widths; the SVG stays hidden. The 30.6 average line anchors above.
+  // scene 6 (STATIC): item price ladder · one card per item, SORTED ascending 5→15, each with a
+  // proportional bar, the 30.6 average marked ABOVE them all. Pickup prices only (McDonald's excluded).
+  // Rendered as HTML into #grid6 by app.js on load/resize; no SVG, no sticky, no scroll steps.
   const ITEM_LABEL = { "وجبة برغر": "وجبة اقتصادية", "شاي كرك": "كرك", "عصير برتقال": "عصير" };
   function scene6(svg, data, step, reduced) {
     const node = svg.node(), cards = document.getElementById("grid6");
@@ -143,15 +144,21 @@
   }
   function scene6cards(s) {
     const chains = s.grid.filter((ch) => !ch.excludedFromRender);   // pickup-priced only (drops delivery-priced)
-    const cardsHtml = s.items.map((it) => {
+    const priced = (it) => chains.filter((ch) => ch.items[it] != null).map((ch) => ch.items[it]);
+    const items = s.items.filter((it) => priced(it).length).sort((a, b) => Math.min(...priced(a)) - Math.min(...priced(b)));
+    const hi = Math.max(...items.flatMap(priced)), lo = Math.min(...items.flatMap(priced));
+    const cardsHtml = items.map((it) => {
       const tags = chains.filter((ch) => ch.items[it] != null).map((ch) =>
         `<span class="ic-tag"><span class="ic-price">${ch.items[it]}<i>ريال</i></span><span class="ic-chain">${ch.chain}</span></span>`
       ).join("");
-      if (!tags) return "";   // no pickup price for this item → no card (no empty cells)
-      return `<div class="ic"><div class="ic-name">${ITEM_LABEL[it] || it}</div><div class="ic-tags">${tags}</div></div>`;
+      const barPct = Math.round(Math.min(...priced(it)) / hi * 100);
+      return `<div class="ic"><div class="ic-name">${ITEM_LABEL[it] || it}</div>` +
+             `<div class="ic-bar" style="width:${barPct}%"></div><div class="ic-tags">${tags}</div></div>`;
     }).join("");
-    return `<div class="ic-anchor">متوسط العملية ≈ ${s.avgBill} ريالًا</div>
-      <div class="ic-grid">${cardsHtml}</div>`;
+    return `<div class="s6-avg"><div class="s6-avg-v">متوسط العملية ≈ ${s.avgBill} ريالًا</div>` +
+      `<div class="s6-avg-note">أي نحو صنفين (وجبة ومشروب، أو أربع شاورمات): طلبُ شخصٍ واحد لا مائدة.</div></div>` +
+      `<div class="s6-scale">الأصناف المفردة تتدرّج من ${lo} إلى ${hi} ريالًا</div>` +
+      `<div class="ic-grid">${cardsHtml}</div>`;
   }
 
   function scene7(svg, data, step, reduced) {

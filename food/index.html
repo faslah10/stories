@@ -99,20 +99,20 @@
   <section class="scene" id="scene4" data-scene="4">
     <div class="graphic">
       <div class="scene-kicker">من الإنفاق إلى الأسعار</div>
-      <div class="scene-title">مؤشر الأسعار: أغذية البيت مقابل المطاعم (2013 → 2026)</div>
+      <div class="scene-title">مؤشر الأسعار: أغذية البيت مقابل المطاعم والمقاهي (2013 → 2026)</div>
       <div class="chart-legend">
-        <span><i style="background:#5E35B1"></i>المطاعم</span>
+        <span><i style="background:#5E35B1"></i>المطاعم والمقاهي</span>
         <span><i style="background:#B0B0B0"></i>أغذية البيت</span>
       </div>
       <svg id="svg4" viewBox="0 0 620 380" role="img" aria-label="خطّا مؤشر الأسعار يتقاطعان: المطاعم تعبر أغذية البيت"></svg>
       <div class="scene-footer"><span class="src"></span><span class="brand">فاصلة عشرية · @faslah_10</span></div>
     </div>
     <div class="steps">
-      <div class="step" data-scene="4" data-step="0"><div class="card">في يناير 2013، كان مؤشر أسعار المطاعم <b>أدنى</b> من مؤشر أغذية البيت بـ<span class="num">3.45</span> نقطة. <span class="muted">(النقطة هنا وحدةُ الرقم القياسي للأسعار.)</span></div></div>
-      <div class="step" data-scene="4" data-step="1"><div class="card">ومنذ ذلك الحين ارتفعت أسعار أغذية البيت <span class="num">+35.3%</span>، وارتفعت أسعار المطاعم <b class="hi num">+48.2%</b>.</div></div>
-      <div class="step" data-scene="4" data-step="2"><div class="card">فتقاطع الخطان: أول عبور في <b>فبراير 2018</b>.</div></div>
-      <div class="step" data-scene="4" data-step="3"><div class="card">واليوم صار مؤشر المطاعم <b>فوق</b> مؤشر البقالة بـ<span class="num">4.77</span> نقطة.</div></div>
-      <div class="step" data-scene="4" data-step="4"><div class="card">وتتسارع الوتيرة: منذ 2023 ارتفع الأكل خارج البيت <b class="num">+8.9%</b> مقابل <span class="num">+3.4%</span> للبقالة، أسرع بأكثر من مرتين ونصف. هذا على مدى السنين، فماذا يفعل الشهر الواحد؟</div></div>
+      <div class="step" data-scene="4" data-step="0"><div class="card">في يناير 2013، كان الأكل خارج البيت <b>أرخص</b> من أكل البيت: مؤشر المطاعم والمقاهي أدنى من أغذية البيت بـ<span class="num">6.2</span> نقطة. <span class="muted">(النقطة هنا وحدةُ الرقم القياسي للأسعار.)</span></div></div>
+      <div class="step" data-scene="4" data-step="1"><div class="card">ثم أخذ الفارق يضيق عامًا بعد عام: ارتفعت أسعار أغذية البيت <span class="num">+35.3%</span>، وأسعار المطاعم والمقاهي <b class="hi num">+47.4%</b>.</div></div>
+      <div class="step" data-scene="4" data-step="2"><div class="card">حتى تقاطع الخطان: أول عبور في <b>فبراير 2019</b>، بعد عقدٍ كامل من اللحاق.</div></div>
+      <div class="step" data-scene="4" data-step="3"><div class="card">واليوم يكاد المؤشران يتطابقان: المطاعم والمقاهي فوق البقالة بـ<span class="num">0.09</span> نقطة فقط، أي أنهما عمليًا <b>متساويان</b>.</div></div>
+      <div class="step" data-scene="4" data-step="4"><div class="card">وحتى منذ 2023 يسيران شبه متلازمين: <span class="num">+4.5%</span> للمطاعم مقابل <span class="num">+3.4%</span> للبقالة. فإذا كانت أسعار المطاعم والبقالة تتحرك متقاربةً طوال العقد، فتضاعُف العمليات <b class="hi">×32</b> وقيمتها ×9.4 ليس في الأسعار: إنه في <b>السلوك</b>.</div></div>
     </div>
   </section>
 
@@ -142,19 +142,34 @@
     <a href="https://faslah10.substack.com" target="_blank" rel="noopener">اشترك في «فاصلة عشرية»: قراءة أسبوعية لاقتصاد السعودية بالأرقام</a>
   </aside>
 
-  <!-- scene 6 · field price grid -->
-  <section class="scene" id="scene6" data-scene="6">
-    <div class="graphic">
-      <div class="scene-kicker">ماذا تشتري الثلاثون ريالًا؟</div>
-      <div class="scene-title"><span class="pending-badge">أسعار موثّقة من منصّات العلامات الرسمية</span></div>
-      <svg id="svg6" viewBox="0 0 620 380" role="img" aria-label="بطاقات أسعار الاستلام لأربع سلاسل، ومتوسط العملية 30.6 ريالًا"></svg>
-      <div id="grid6" class="grid-cards" hidden></div>
-      <div class="scene-footer"><span class="src"></span><span class="brand">فاصلة عشرية · @faslah_10</span></div>
+  <!-- scene 6 · STATIC (no sticky graphic, no scroll steps): comparison → ladder → basket → methodology -->
+  <section class="scene6-static" id="scene6" data-scene="6">
+    <div class="scene-kicker">ماذا تشتري الثلاثون ريالًا؟</div>
+    <div class="scene-title"><span class="pending-badge">أسعار موثّقة من منصّات العلامات الرسمية</span></div>
+
+    <!-- Claim 1: grocery swipe vs restaurant swipe -->
+    <div class="s6-cmp-row">
+      <div class="s6-cmp grocery">
+        <div class="s6-cmp-v">≈ <span class="num">39</span></div>
+        <div class="s6-cmp-l">عملية البقالة</div>
+        <div class="s6-cmp-n">سلة تُملأ</div>
+      </div>
+      <div class="s6-cmp-vs">مقابل</div>
+      <div class="s6-cmp rest">
+        <div class="s6-cmp-v">≈ <span class="num">31</span></div>
+        <div class="s6-cmp-l">عملية المطعم</div>
+        <div class="s6-cmp-n">طلب يُحمل</div>
+      </div>
     </div>
-    <div class="steps">
-      <div class="step" data-scene="6" data-step="0"><div class="card">ولتخيّل الحجم فقط، لا لأن العملية وجبة، فإن ثلاثين ريالًا تشتري أربع شاورمات عربي، أو سلة قهوة كاملة، أو وجبة الكفو ولاتيه معها. وسبعة ريالات لشاورما: مشترياتٌ من النوع الذي كان يُدفع نقدًا.</div></div>
-      <div class="step" data-scene="6" data-step="1"><div class="card">رصدنا أسعار الاستلام من منصّات الطلب الرسمية للعلامات يومي 29–30 يوليو 2026 من فروع بالرياض، والسلاسل توحّد أسعارها وطنيًا عبر منصّاتها؛ وهي صورة أسعار لحظتها، غرضها تثبيت معنى المتوسط لا تتبّع تغيّره.</div></div>
-    </div>
+    <p class="s6-text">عملية البقالة الواحدة أكبر من عملية المطعم بالريال (مايو 2026): البقالة سلةٌ تُملأ دفعةً، والمطعم طلبٌ يتكرر.</p>
+
+    <!-- Claim 2: the item ladder (average marked above; cards rendered from data) -->
+    <div id="grid6" class="grid-cards"></div>
+
+    <!-- basket caption (the cash bridge) + methodology -->
+    <p class="s6-text s6-basket">كلها مشترياتٌ صغيرة، من النوع الذي كان يُدفع نقدًا قبل أن يدخل العدّاد.</p>
+    <p class="s6-text s6-method">رصدنا أسعار الاستلام من منصّات الطلب الرسمية للعلامات يومي 29–30 يوليو 2026 من فروع بالرياض، والسلاسل توحّد أسعارها وطنيًا عبر منصّاتها؛ وهي صورة أسعار لحظتها، غرضها تثبيت معنى المتوسط لا تتبّع تغيّره.</p>
+    <div class="scene-footer s6-foot"><span class="src"></span><span class="brand">فاصلة عشرية · @faslah_10</span></div>
   </section>
 
   <!-- scene 7 · counter → closing → honesty cards -->
@@ -167,7 +182,7 @@
     <div class="steps" id="scene7steps">
       <div class="step" data-scene="7" data-step="0"><div class="card closing-card">
         <p>لكل مقيم في السعودية بعمر 15 سنة فأكثر نحو <b class="num">9.6</b> عملية مطاعم بالبطاقة شهريًا: <span class="num">263.7</span> مليون عملية في مايو 2026، مقسومةً على <span class="num">27.4</span> مليون مقيم بهذا العمر (تقديرات منتصف 2024). عمليةٌ كل ثلاثة أيام تقريبًا، بالبطاقات وحدها، والعملية ليست وجبة.</p>
-        <p class="q">فماذا انكمش فعلًا؟ العملية، لا سعر الوجبة. فمنذ 2013 ارتفع مؤشر أسعار المطاعم والفنادق <span class="num">48.2%</span>، فالوجبة نفسها صارت أغلى لا أرخص؛ إنما صغُرت العملية: مشترياتٌ أصغر وأكثر تكرارًا، ودخل العدّادَ ما كان يُدفع نقدًا.</p>
+        <p class="q">فماذا انكمش فعلًا؟ العملية، لا سعر الوجبة. فمنذ 2013 ارتفع مؤشر أسعار المطاعم والمقاهي <span class="num">47.4%</span>، فالوجبة نفسها صارت أغلى لا أرخص؛ إنما صغُرت العملية: مشترياتٌ أصغر وأكثر تكرارًا، ودخل العدّادَ ما كان يُدفع نقدًا. وحتى بعد تعديلها لتضخّم أسعار المطاعم، تراجعت العملية بالقيمة الحقيقية نحو <span class="num">6%</span> منذ 2024.</p>
       </div></div>
       <div class="step" data-scene="7" data-step="1"><div class="summary-card">
         <h3>الخلاصة في ثلاث جمل</h3>
