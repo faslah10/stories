@@ -76,9 +76,11 @@ a { color: var(--purple); }
 .scene { position: relative; }
 .graphic {
   position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; z-index: 1; padding: 7vh 3vw 9vh;
+  align-items: center; justify-content: flex-start; z-index: 1; padding: 3.5vh 3vw 9vh;
 }
-.graphic svg { width: min(96vw, 620px); height: auto; max-height: 62vh; overflow: visible; min-height: 240px; }
+/* header (kicker + takeaway title + legend) pins to the top; the chart takes the middle via
+   margin-block:auto so the scrolling card never occludes the conclusion title. */
+.graphic svg { width: min(96vw, 620px); height: auto; max-height: 52vh; overflow: visible; min-height: 240px; margin-block: auto; }
 .graphic svg:empty { background: linear-gradient(100deg,#efe9f8 30%,#f6f2fc 50%,#efe9f8 70%);
   background-size: 200% 100%; animation: sk 1.2s linear infinite; border-radius: 14px; min-height: 300px; }
 @keyframes sk { to { background-position: -200% 0 } }
