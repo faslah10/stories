@@ -46,12 +46,23 @@ a { color: var(--purple); }
 .hero-bottom small { font-size: .26em; font-weight: 700; letter-spacing: 0; margin-inline-start: .35em;
   color: rgba(255,255,255,.72); vertical-align: middle; }
 @keyframes heroDrop { 0% { transform: scaleY(.55); opacity: .55 } 55% { transform: scaleY(1); opacity: 1 } 100% { transform: scaleY(.55); opacity: .55 } }
-/* on-page hero illustration (replaces the animated 120→31 intro) */
-.hero-illustration { display: block; width: 100%; max-width: 500px; height: auto; margin: 0 auto 1.3em;
-  border-radius: 22px; box-shadow: 0 20px 55px rgba(20, 10, 45, .45); }
-.hero-headline { font-size: clamp(1.8rem, 8.5vw, 3rem); font-weight: 800; line-height: 1.25;
-  color: #fff; max-width: 22ch; margin: 0 auto .2em; }
-.hero-headline .dot { color: var(--orange); }
+/* on-page ARTICLE COVER: brand · title · 2016→2026 · wide illustration banner · dek (light) */
+.opening.cover { min-height: auto; color: var(--ink);
+  background: linear-gradient(180deg, #f8f2ec 0%, #efe7f5 100%); padding: 7vh 6vw 8vh; }
+.cover-brand { color: var(--purple); font-weight: 700; letter-spacing: .3px;
+  font-size: clamp(.95rem, 3.6vw, 1.2rem); }
+.cover-h1 { color: var(--ink); font-weight: 800; line-height: 1.22; max-width: 20ch;
+  font-size: clamp(2rem, 8vw, 3.4rem); margin: .22em auto .1em; }
+.cover-h1 .dot { color: var(--orange); }
+.cover-sub { color: #B25E00; font-weight: 700; direction: ltr;
+  font-size: clamp(1.05rem, 4.2vw, 1.55rem); }
+.cover-art { display: block; width: 100%; max-width: 940px; height: auto; margin: 1.5em auto;
+  border-radius: 22px; box-shadow: 0 18px 50px rgba(20, 10, 45, .16); }
+.opening.cover .lead { color: var(--ink); }
+.opening.cover .lead b { color: #B25E00; }
+.opening.cover .q { color: var(--ink); }
+.opening.cover .fine { color: #6E6E6E; opacity: 1; }
+.opening.cover .fine a { color: var(--purple); font-weight: 700; }
 /* scene 6 bridge lead (welds the static scene into the arc) */
 .s6-bridge { max-width: 46ch; margin: .4rem auto 1.2rem; text-align: center; color: var(--ink); font-size: 1.05rem; line-height: 1.6; }
 .opening .lead { font-size: clamp(1.1rem, 5.2vw, 1.7rem); max-width: 36ch; margin: .3em auto; }
