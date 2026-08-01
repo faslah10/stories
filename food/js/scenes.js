@@ -161,8 +161,8 @@
              `<div class="ic-bar" style="width:${barPct}%"></div><div class="ic-tags">${tags}</div></div>`;
     }).join("");
     return `<div class="s6-avg"><div class="s6-avg-v">متوسط العملية ≈ ${s.avgBill} ريالًا</div>` +
-      `<div class="s6-avg-note">أي وجبة ومشروب، أو أربع شاورمات؛ طلبُ شخصٍ واحد لا مائدة.</div></div>` +
-      `<div class="s6-scale">الأصناف المفردة تتدرّج من ${lo} إلى ${hi} ريالًا</div>` +
+      `<div class="s6-avg-note">لم يعد يغطي مائدة عشاء عائلي، بل شخص واحد؛ وجبة خفيفة ومشروب، أو أربع حبات شاورما.</div></div>` +
+      `<div class="s6-scale">المشتريات اليومية الفردية تتدرّج أسعارها من ${lo} إلى ${hi} ريالًا للحبة</div>` +
       `<div class="ic-grid">${cardsHtml}</div>`;
   }
 
